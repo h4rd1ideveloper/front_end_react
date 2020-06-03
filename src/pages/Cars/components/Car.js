@@ -1,22 +1,22 @@
 import React, { useContext } from 'react'
 import { FiTrash2 } from "react-icons/fi"
 import { client } from '../../../assets/httpClient'
-import  { Context, toDispatch } from './../../../store'
+import { Context, toDispatch } from './../../../store'
 
-export default function ({ name, color, brand, year, plate, ...props }) {
+export default function ({ key, id, name, color, brand, year, plate, ...props }) {
     const [, dispatch] = useContext(Context)
     const { delete_by_id } = toDispatch
     const delet = async (e) => {
         e.preventDefault()
         try {
-            client.delete(`/cars/${props.id}`)
-            dispatch(delete_by_id(props.id))
+            client.delete(`/cars/${id}`)
+            dispatch(delete_by_id(id))
         } catch ({ message }) {
             console.error(message)
         }
     }
     return (
-        <li {...props}>
+        <li>
             <strong>name:</strong>
             <p>{name}</p>
             <strong>brand:</strong>

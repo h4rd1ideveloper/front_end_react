@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { client } from '../../../assets/httpClient'
 import _helper from '../../../assets/helprs'
+import { useHistory } from "react-router-dom"
+import { Context, toDispatch } from './../../../store'
 
-export default function (prop) {
+export default function (props) {
     const { toggle, isEmail } = _helper
+    const [ctx, dispatch] = useContext(Context)
+    const { init } = toDispatch
+    let history = useHistory();
+    useEffect(
+        () => {
+            console.log({ctx, props}, 'att')
+        }, [ctx, props]
+    )
     async function submit_sign(e) {
         e.preventDefault();
         const [btn, n_email, n_name, n_password] = [
@@ -23,16 +33,21 @@ export default function (prop) {
         const { data } = await client.post('/users', { email, name, password })
 
         if (data && data.fields && data.fields.includes('email')) {
-            n_email.classList.add('is-invalid')
             n_email.classList.remove('is-valid')
+            n_email.classList.add('is-invalid')
         }
         else {
-            n_password.classList.add('is-valid')
-            n_password.classList.remove('is-invalid')
-           console.log(data)
+            n_email.classList.remove('is-invalid')
+            n_email.classList.add('is-valid')
         }
+        console.log(data, 'final')
         btn.disabled = "false";
         btn.innerText = "Login";
+        if (data && !data.error) {
+            const user = data.user
+            dispatch(init(user))
+            history.push('/', user)
+        }
     }
     return (
         <div id="sign" className="col-12 col-sm-10 col-md-8 col-lg-6 mx-auto bg-white p-5 shadow d-none">
@@ -66,7 +81,7 @@ export default function (prop) {
             </fieldset>
             <div className="d-flex flex-row align-items-center justify-content-between mx-auto text-white-50 ">
                 <button id="submit_sign" onClick={submit_sign} className="btn btn-block btn-primary m-0 mx-1 w-25">Sign</button>
-                <button id="toLogin" onClick={toggle()} type="button"  className="btn  btn-block btn-secondary m-0 mx-1 w-25">Login</button>
+                <button id="toLogin" onClick={toggle()} type="button" className="btn  btn-block btn-secondary m-0 mx-1 w-25">Login</button>
             </div>
         </div>
     );

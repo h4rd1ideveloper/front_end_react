@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { client } from '../../../assets/httpClient'
 import { useHistory } from "react-router-dom"
 import _helper from '../../../assets/helprs'
+import { Context, toDispatch } from './../../../store'
 
 export default function (props) {
     const { toggle, isEmail } = _helper
     let history = useHistory();
+    const [, dispatch] = useContext(Context)
+    const { init } = toDispatch
     async function submit_login(e) {
         e.preventDefault();
         const [btn, n_email, n_password] = [
@@ -36,14 +39,16 @@ export default function (props) {
             else {
                 n_password.classList.add('is-valid')
                 n_password.classList.remove('is-invalid')
-                history.push({
-                    pathname: '/',
-                    state: data.user
-                });
             }
         }
+        console.log(data, 'final')
         btn.disabled = "false";
         btn.innerText = "Login";
+        if (data && !data.error) {
+            const user = data.user
+            dispatch(init(user))
+            history.push('/', user)
+        }
     }
     return (
         <div id="login" className="col-12 col-sm-10 col-md-8 col-lg-6 mx-auto bg-white p-5 shadow">

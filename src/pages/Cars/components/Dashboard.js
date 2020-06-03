@@ -1,27 +1,28 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { Link, useHistory, useLocation } from "react-router-dom"
+import React, { useEffect, useContext } from 'react';
+import { useHistory, useLocation } from "react-router-dom"
 import "../style.scss"
-import { client } from '../../../assets/httpClient'
-import Store, { Context, functionsToDispatch } from '../../../store/Cars'
-
-export function App(props) {
-    const [, dispatch] = useContext(Context)
-    const { init } = functionsToDispatch
-    const storeFromServer = async () => {
-        const { data } = await client.get('http://localhost:8080/cars')
-        dispatch(init(data))
-    }
-    useEffect(() => {
-        try {
-            storeFromServer()
-        } catch (e) {
-            console.error(e)
-        }
-    }, [])
-    return <p>{JSON.stringify(props)}</p>
-}
-
+import { Context } from './../../../store'
+import Car from './Car';
 
 export default function (props) {
-    return <Store children={<App {...props} />} />
+    const [ctx,] = useContext(Context)
+    let history = useHistory();
+    const location = useLocation();
+    useEffect(() => {
+        console.log({ ctx, history, location })
+    }, [ctx, history, location])
+    return (
+        <>
+            <header>
+                Carros
+        </header>
+            <main>
+                <ul>
+                    {
+                        ctx && ctx.cars.map((v, i) => <Car key={i} id={ctx.id} {...v} {...props} />)
+                    }
+                </ul>
+            </main>
+        </>
+    )
 }

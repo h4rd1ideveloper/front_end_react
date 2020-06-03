@@ -13,13 +13,13 @@ export default function (props) {
     }, [ctx, history, location])
     return (
         <>
-            <header>
-                Carros
+        <header className="container">
+            <h1>Your Cars</h1>
         </header>
-            <main>
+            <main className="container">
                 <ul>
                     {
-                        ctx && ctx.cars.map((v, i) => <Car key={i} id={ctx.id} {...v} {...props} />)
+                        ctx && ctx.cars.map((v, i) => <Car key={i} index={i} user_id={ctx.id} {...v} {...props} />)
                     }
                 </ul>
             </main>

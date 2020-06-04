@@ -36,7 +36,7 @@ export default function ({ index, user_id, id, name, color, brand, year, plate, 
                // alert('tudo certo')
                 setState({ ...state, ...data, edit: false })
             } else {
-                alert(data && data.message ? data.message : JSON.stringify(data))
+                console.log(data && data.message ? data.message : JSON.stringify(data))
             }
         } else {
             for (const n of document.querySelectorAll(`#${id_node} input:not(.plate)`)) {

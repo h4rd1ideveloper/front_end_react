@@ -2,7 +2,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 
 export const opt = {
-    title: 'Multiple inputs',
+    title: 'Create a new Car',
     html:
         '<input placeholder="name" required id="swal-name" class="swal2-input">' +
         '<input placeholder="brand" required id="swal-brand" class="swal2-input">' +

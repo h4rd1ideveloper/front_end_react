@@ -1,5 +1,4 @@
-
-*{
+* {
   transition: all 0.3s;
 }
 ul {
@@ -7,13 +6,13 @@ ul {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   grid-gap: 24px;
   list-style: none;
-
+  padding: 0 !important;
   li {
     background: rgba(255, 255, 255, 0.349);
     padding: 24px;
     border-radius: 8px;
     position: relative;
-    &:hover{
+    &:hover {
       background: rgba(255, 255, 255, 0.349);
       transform: scale(1.05);
       strong {

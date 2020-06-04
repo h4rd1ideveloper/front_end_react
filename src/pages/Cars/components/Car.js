@@ -12,9 +12,7 @@ export default function ({ index, user_id, id, name, color, brand, year, plate, 
         e.preventDefault()
         setState({ ...state, [e.target.name]: e.target.value })
     }
-    const save = async e => {
-        console.log({ index, user_id, id, id_node })
-    }
+    
     const edit = async e => {
         if (state.edit) {
             for (const n of document.querySelectorAll(`#${id_node} input`)) {
@@ -36,7 +34,7 @@ export default function ({ index, user_id, id, name, color, brand, year, plate, 
             })
             if (data && !data.error) {
                 alert('tudo certo')
-                setState({ ...state,...data, edit: false })
+                setState({ ...state, ...data, edit: false })
             } else {
                 alert(data && data.message ? data.message : JSON.stringify(data))
             }
@@ -68,9 +66,6 @@ export default function ({ index, user_id, id, name, color, brand, year, plate, 
             <input onChange={handle_input_change} name='color' value={state.color} disabled />
             <strong>plate:</strong>
             <input className="plate" onChange={handle_input_change} name='plate' value={state.plate} disabled />
-            <button className="save" type={"button"} onClick={save}>
-                <FiCheck size={20} color={"#a8a8b3"} />
-            </button>
             <button className="edit" type={"button"} onClick={edit}>
                 <FiEdit size={20} color={"#a8a8b3"} />
             </button>

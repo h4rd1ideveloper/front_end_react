@@ -52,7 +52,7 @@ export default function (props) {
     return (
         <div id="sign" className="col-12 col-sm-10 col-md-8 col-lg-6 mx-auto bg-white p-5 shadow d-none">
             <fieldset className="mb-5">
-                <legend className="text-capitalize text-center mb-4">
+                <legend className="text-capitalize text-white text-center mb-4">
                     <h1>authentication</h1>
                 </legend>
                 <div className="container-fluid p-0">
@@ -80,8 +80,8 @@ export default function (props) {
                 </div>
             </fieldset>
             <div className="d-flex flex-row align-items-center justify-content-between mx-auto text-white-50 ">
-                <button id="submit_sign" onClick={submit_sign} className="btn btn-block btn-primary m-0 mx-1 w-25">Sign</button>
-                <button id="toLogin" onClick={toggle()} type="button" className="btn  btn-block btn-secondary m-0 mx-1 w-25">Login</button>
+                <button id="submit_sign" onClick={submit_sign} className="btn btn-block btn-outline-primary m-0 mx-1 w-25">Sign</button>
+                <button id="toLogin" onClick={toggle()} type="button" className="btn btn-block btn-outline-dark m-0 mx-1 w-25">Login</button>
             </div>
         </div>
     );

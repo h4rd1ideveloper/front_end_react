@@ -33,7 +33,7 @@ export default function ({ index, user_id, id, name, color, brand, year, plate, 
                 }
             })
             if (data && !data.error) {
-                alert('tudo certo')
+               // alert('tudo certo')
                 setState({ ...state, ...data, edit: false })
             } else {
                 alert(data && data.message ? data.message : JSON.stringify(data))

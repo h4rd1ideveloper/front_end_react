@@ -11,7 +11,7 @@ export default function (props) {
     let history = useHistory();
     useEffect(
         () => {
-            console.log({ctx, props}, 'att')
+            console.log({ ctx, props }, 'att')
         }, [ctx, props]
     )
     async function submit_sign(e) {
@@ -28,7 +28,7 @@ export default function (props) {
             return false;
         }
         btn.disabled = "true";
-        btn.innerText = "Aguarde ...";
+        btn.innerText = " . . . ";
 
         const { data } = await client.post('/users', { email, name, password })
 

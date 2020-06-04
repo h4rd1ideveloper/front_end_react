@@ -22,7 +22,7 @@ export default function (props) {
             return false;
         }
         btn.disabled = "true";
-        btn.innerText = "Aguarde ...";
+        btn.innerText = " . . . ";
         const { data } = await client.post('/login', { email, password })
         if (data && data.fields && data.fields.includes('email')) {
             n_email.classList.add('is-invalid')

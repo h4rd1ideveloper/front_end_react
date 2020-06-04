@@ -9,6 +9,7 @@ export const opt = {
         '<input placeholder="year" required id="swal-year" class="swal2-input">' +
         '<input placeholder="color" required id="swal-color" class="swal2-input">' +
         '<input placeholder="plate" required id="swal-plate" class="swal2-input">',
+    showCloseButton: true,
     preConfirm: () => {
         return new Promise((resolve) => {
             resolve({
